@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Patrick Hand', cursive;
+  background: #fff0f5;
+  overflow: hidden;
+}
+
+/* SCREENS */
+.screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 💌 ENVELOPE */
+#envelope {
+  position: relative;
+  width: 220px;
+  height: 140px;
+  cursor: pointer;
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  background: #ffb6c1;
+  border-radius: 5px;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 70px solid #ff8fa3;
+  transform-origin: top;
+  transition: transform 0.8s ease;
+}
+
+#envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+/* 💌 LETTER */
+#letter {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  animation: slideUp 1s ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#typed-text {
+  font-size: 24px;
+  min-height: 80px;
+}
+
+/* BUTTONS */
+button {
+  margin: 10px;
+  padding: 10px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  background: #ff8fa3;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff6f91;
+}
+
+/* YES SCREEN */
+#yes-screen img {
+  width: 250px;
+  max-width: 80%;
+}
+
+/* ❤️ HEART PARTICLES */
+#hearts span {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+  #typed-text {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
