@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>valentines</title>
+  <title>Valentine</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Quick basic style if you don't have style.css yet */
-    body {
-      font-family: 'Patrick Hand', cursive;
-      text-align: center;
-      background-color: #ffe6f0;
-      overflow-x: hidden;
-    }
-    .screen { display: none; }
-    .screen.hidden { display: none; }
-    .screen:not(.hidden) { display: block; }
-    #hearts { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; }
-    #envelope { cursor: pointer; display: inline-block; margin-top: 50px; }
+    body { font-family: 'Patrick Hand', cursive; text-align:center; background:#ffe6f0; }
+    .screen { display:none; }
+    .screen.active { display:block; }
+    #hearts span { position:absolute; animation:floatUp 6s linear forwards; }
+    @keyframes floatUp { 0% { transform:translateY(0); opacity:1; } 100% { transform:translateY(-600px); opacity:0; } }
   </style>
 </head>
 <body>
@@ -28,40 +21,35 @@
   <div id="hearts"></div>
 
   <!-- ENVELOPE SCREEN -->
-  <div id="envelope-screen" class="screen">
-    <div id="envelope" onclick="openEnvelope()">
+  <div id="envelope-screen" class="screen active">
+    <div id="envelope" onclick="openEnvelope()" style="cursor:pointer;">
       <div class="flap"></div>
       <div class="body"></div>
-      <p>tap to open !!</p>
+      <p>Tap to open !!</p>
     </div>
   </div>
 
   <!-- LETTER SCREEN -->
-  <div id="letter-screen" class="screen hidden">
+  <div id="letter-screen" class="screen">
     <div id="letter">
       <p id="typed-text"></p>
       <div id="buttons" class="hidden">
         <button onclick="yesAnswer()">YES !!</button>
-        <button onclick="noAnswer()">no.. </button>
+        <button onclick="noAnswer()">No..</button>
       </div>
     </div>
   </div>
 
-<!-- YES SCREEN -->
-<div id="yes-screen" class="screen hidden">
-  <h1> YAYAY i love you !! happy 7 months also <3 </h1>
-  <img 
-    src="soobin-beomgyu.gif" 
-    alt="YAY GIF" 
-    onerror="this.src='https://raw.githubusercontent.com/miles/7-months/main/soobin-beomgyu.gif';"
-  >
-</div>
-
+  <!-- YES SCREEN -->
+  <div id="yes-screen" class="screen">
+    <h1>YAYAY i love you !! Happy 7 months <3</h1>
+    <img src="soobin-beomgyu.gif" alt="YAY GIF">
+  </div>
 
   <!-- NO SCREEN -->
-  <div id="no-screen" class="screen hidden">
-    <h1>what why :(</h1>
-    <p>go back !!</p>
+  <div id="no-screen" class="screen">
+    <h1>What why :(</h1>
+    <p>Go back !!</p>
     <button onclick="goBack()">Back</button>
   </div>
 
@@ -69,83 +57,6 @@
   <audio id="happyMusic" src="happy.mp3" loop></audio>
   <audio id="sadMusic" src="sad.mp3"></audio>
 
-  <!-- SCRIPT -->
-  <script>
-    const text = "would you please be my valentine? ˚ʚ♡ɞ˚";
-    let heartInterval;
-
-    function openEnvelope() {
-      document.getElementById("envelope").classList.add("open");
-      document.getElementById("happyMusic").play();
-
-      setTimeout(() => {
-        document.getElementById("envelope-screen").classList.add("hidden");
-        document.getElementById("letter-screen").classList.remove("hidden");
-        typeText();
-        startHearts();
-      }, 800);
-    }
-
-    function typeText() {
-      const target = document.getElementById("typed-text");
-      target.textContent = "";
-      let i = 0;
-
-      const typing = setInterval(() => {
-        target.textContent += text[i];
-        i++;
-        if (i === text.length) {
-          clearInterval(typing);
-          document.getElementById("buttons").classList.remove("hidden");
-        }
-      }, 70);
-    }
-
-    function yesAnswer() {
-      document.getElementById("letter-screen").classList.add("hidden");
-      document.getElementById("yes-screen").classList.remove("hidden");
-    }
-
-    function noAnswer() {
-      document.getElementById("letter-screen").classList.add("hidden");
-      document.getElementById("no-screen").classList.remove("hidden");
-      document.getElementById("happyMusic").pause();
-      document.getElementById("sadMusic").play();
-    }
-
-    function goBack() {
-      document.getElementById("no-screen").classList.add("hidden");
-      document.getElementById("letter-screen").classList.remove("hidden");
-    }
-
-    /* ❤️ HEARTS */
-    function startHearts() {
-      heartInterval = setInterval(() => {
-        const heart = document.createElement("span");
-        heart.innerHTML = "💖";
-        heart.style.position = "fixed";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = "-20px";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        heart.style.pointerEvents = "none";
-        document.getElementById("hearts").appendChild(heart);
-
-        const fall = setInterval(() => {
-          let top = parseFloat(heart.style.top);
-          if(top < window.innerHeight + 20){
-            heart.style.top = top + 2 + "px";
-          } else {
-            heart.remove();
-            clearInterval(fall);
-          }
-        }, 20);
-      }, 300);
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
