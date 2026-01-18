@@ -1,3 +1,6 @@
+/* ======================== */
+/*      GLOBAL STYLES       */
+/* ======================== */
 * {
   box-sizing: border-box;
 }
@@ -8,9 +11,12 @@ body {
   font-family: 'Patrick Hand', cursive;
   background: #fff0f5;
   overflow: hidden;
+  text-align: center;
 }
 
-/* SCREENS */
+/* ======================== */
+/*        SCREENS           */
+/* ======================== */
 .screen {
   height: 100vh;
   display: flex;
@@ -19,16 +25,27 @@ body {
   text-align: center;
 }
 
+.screen.active {
+  display: flex;
+}
+
 .hidden {
   display: none;
 }
 
-/* 💌 ENVELOPE */
+/* ======================== */
+/*       ENVELOPE           */
+/* ======================== */
+#envelope-screen {
+  margin-top: 50px;
+}
+
 #envelope {
   position: relative;
   width: 220px;
   height: 140px;
   cursor: pointer;
+  margin: 0 auto;
 }
 
 .body {
@@ -36,25 +53,41 @@ body {
   height: 100%;
   background: #ffb6c1;
   border-radius: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
   border-left: 110px solid transparent;
   border-right: 110px solid transparent;
-  border-top: 70px solid #ff8fa3; /* changed from border-bottom */
-  transform-origin: bottom; /* pivot from the bottom now */
+  border-top: 70px solid #ff8fa3; /* flap points up */
+  transform-origin: bottom; /* pivot from bottom */
   transition: transform 0.8s ease;
+  z-index: 2;
 }
 
 #envelope.open .flap {
-  transform: rotateX(-180deg); /* flips down when opening */
+  transform: rotateX(-180deg); /* flap flips down when opening */
 }
 
-#envelope.open .flap {
-  transform: rotateX(180deg);
+#envelope p {
+  position: absolute;
+  bottom: -30px;
+  width: 100%;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #d6336c;
 }
 
-/* 💌 LETTER */
+/* ======================== */
+/*         LETTER           */
+/* ======================== */
 #letter {
   background: white;
   padding: 30px;
@@ -74,7 +107,9 @@ body {
   min-height: 80px;
 }
 
-/* BUTTONS */
+/* ======================== */
+/*         BUTTONS          */
+/* ======================== */
 button {
   margin: 10px;
   padding: 10px 25px;
@@ -84,19 +119,25 @@ button {
   background: #ff8fa3;
   color: white;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 button:hover {
   background: #ff6f91;
 }
 
-/* YES SCREEN */
+/* ======================== */
+/*       YES SCREEN GIF     */
+/* ======================== */
 #yes-screen img {
   width: 250px;
   max-width: 80%;
+  margin-top: 20px;
 }
 
-/* ❤️ HEART PARTICLES */
+/* ======================== */
+/*      HEART PARTICLES     */
+/* ======================== */
 #hearts span {
   position: absolute;
   bottom: -20px;
@@ -116,7 +157,9 @@ button:hover {
   }
 }
 
-/* 📱 MOBILE */
+/* ======================== */
+/*        MOBILE            */
+/* ======================== */
 @media (max-width: 600px) {
   #typed-text {
     font-size: 20px;
@@ -125,5 +168,22 @@ button:hover {
   h1 {
     font-size: 24px;
   }
+
+  #envelope {
+    width: 180px;
+    height: 110px;
+  }
+
+  .flap {
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-top: 60px solid #ff8fa3;
+  }
+
+  #yes-screen img {
+    width: 200px;
+  }
 }
+
+
 
