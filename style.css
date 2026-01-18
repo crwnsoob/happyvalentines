@@ -39,16 +39,15 @@ body {
 }
 
 .flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
   border-left: 110px solid transparent;
   border-right: 110px solid transparent;
-  border-bottom: 70px solid #ff8fa3;
-  transform-origin: top;
+  border-top: 70px solid #ff8fa3; /* changed from border-bottom */
+  transform-origin: bottom; /* pivot from the bottom now */
   transition: transform 0.8s ease;
+}
+
+#envelope.open .flap {
+  transform: rotateX(-180deg); /* flips down when opening */
 }
 
 #envelope.open .flap {
@@ -127,3 +126,4 @@ button:hover {
     font-size: 24px;
   }
 }
+
