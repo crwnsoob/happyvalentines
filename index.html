@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> i love you so much, be my valentine? </title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEART PARTICLES -->
+  <div id="hearts"></div>
+
+  <!-- ENVELOPE SCREEN -->
+  <div id="envelope-screen" class="screen">
+    <div id="envelope" onclick="openEnvelope()">
+      <div class="flap"></div>
+      <div class="body"></div>
+      <p>tap to open !!</p>
+    </div>
+  </div>
+
+  <!-- LETTER SCREEN -->
+  <div id="letter-screen" class="screen hidden">
+    <div id="letter">
+      <p id="typed-text"></p>
+      <div id="buttons" class="hidden">
+        <button onclick="yesAnswer()">YES !!</button>
+        <button onclick="noAnswer()">no.. </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- YES SCREEN -->
+  <div id="yes-screen" class="screen hidden">
+    <h1> YAYAY i love you !! happy 7 months also <3 </h1>
+    <img src="./soobin-beomgyu.gif" alt="TXT">
+  </div>
+
+  <!-- NO SCREEN -->
+  <div id="no-screen" class="screen hidden">
+    <h1>what why :(</h1>
+    <p>go back !!</p>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <!-- AUDIO -->
+  <audio id="happyMusic" src="happy.mp3" loop></audio>
+  <audio id="sadMusic" src="sad.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
