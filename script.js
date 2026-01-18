@@ -1,16 +1,12 @@
-const text = "Would you please be my valentine? ♡";
+const text = "Would you please be my valentine? ˚ʚ♡ɞ˚";
 let heartInterval;
 
 function openEnvelope() {
-  document.getElementById("envelope").classList.add("open");
+  document.getElementById("envelope-screen").classList.remove("active");
   document.getElementById("happyMusic").play();
-
-  setTimeout(() => {
-    document.getElementById("envelope-screen").classList.add("hidden");
-    document.getElementById("letter-screen").classList.remove("hidden");
-    typeText();
-    startHearts();
-  }, 800);
+  document.getElementById("letter-screen").classList.add("active");
+  typeText();
+  startHearts();
 }
 
 function typeText() {
@@ -29,34 +25,31 @@ function typeText() {
 }
 
 function yesAnswer() {
-  document.getElementById("letter-screen").classList.add("hidden");
-  document.getElementById("yes-screen").classList.remove("hidden");
+  document.getElementById("letter-screen").classList.remove("active");
+  document.getElementById("yes-screen").classList.add("active");
 }
 
 function noAnswer() {
-  document.getElementById("letter-screen").classList.add("hidden");
-  document.getElementById("no-screen").classList.remove("hidden");
+  document.getElementById("letter-screen").classList.remove("active");
+  document.getElementById("no-screen").classList.add("active");
   document.getElementById("happyMusic").pause();
   document.getElementById("sadMusic").play();
 }
 
 function goBack() {
-  document.getElementById("no-screen").classList.add("hidden");
-  document.getElementById("letter-screen").classList.remove("hidden");
+  document.getElementById("no-screen").classList.remove("active");
+  document.getElementById("letter-screen").classList.add("active");
 }
 
-/* ❤️ HEARTS */
+/* HEARTS */
 function startHearts() {
   heartInterval = setInterval(() => {
     const heart = document.createElement("span");
     heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.left = Math.random() * window.innerWidth + "px";
     heart.style.fontSize = Math.random() * 20 + 15 + "px";
     document.getElementById("hearts").appendChild(heart);
 
     setTimeout(() => heart.remove(), 6000);
   }, 300);
 }
-
-
-
