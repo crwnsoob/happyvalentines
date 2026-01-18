@@ -1,4 +1,4 @@
-const text = "Will you be my Valentine? 💌";
+const text = "would you please be my valentine? ˚ʚ♡ɞ˚";
 let heartInterval;
 
 function openEnvelope() {
@@ -57,3 +57,4 @@ function startHearts() {
     setTimeout(() => heart.remove(), 6000);
   }, 300);
 }
+
